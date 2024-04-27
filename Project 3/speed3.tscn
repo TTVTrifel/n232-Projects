@@ -1,0 +1,129 @@
+[gd_scene load_steps=17 format=3 uid="uid://cp4tijnnt2jw2"]
+
+[ext_resource type="Script" path="res://section.gd" id="1_rg3s6"]
+[ext_resource type="PackedScene" uid="uid://cywp4g3pk6yhv" path="res://section.tscn" id="2_rthit"]
+[ext_resource type="Script" path="res://PlayerMovement.gd" id="3_b5u8p"]
+[ext_resource type="Script" path="res://Label3.gd" id="4_0wr8u"]
+[ext_resource type="Material" uid="uid://duimefho0br2k" path="res://M_Snake.tres" id="5_itrgv"]
+[ext_resource type="Material" uid="uid://etlwie6s8t3i" path="res://M_Eyes.tres" id="6_yarg7"]
+[ext_resource type="Script" path="res://Food.gd" id="7_kejh1"]
+[ext_resource type="Material" uid="uid://qfxxj3bddd5f" path="res://M_Food.tres" id="8_584sj"]
+[ext_resource type="PackedScene" uid="uid://b6373t2t4g07e" path="res://enemy.tscn" id="9_y1knr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ywvt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_aud84"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_17dgb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_fe87x"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vhr24"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_73g0o"]
+
+[sub_resource type="Environment" id="Environment_21cos"]
+background_mode = 1
+background_color = Color(0, 0.576471, 0, 1)
+
+[node name="Speed" type="Node3D"]
+
+[node name="SectionsHolder" type="Node3D" parent="."]
+script = ExtResource("1_rg3s6")
+section = ExtResource("2_rthit")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(36.3993, 0, 0, 0, 0.165631, 0, 0, 0, 30.4093, 0, 0, 0)
+shape = SubResource("BoxShape3D_0ywvt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(36.3993, 0, 0, 0, 0.165631, 0, 0, 0, 30.4093, 0, 0, 0)
+material_override = ExtResource("6_yarg7")
+mesh = SubResource("BoxMesh_aud84")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Head" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.657332, -1.65531)
+axis_lock_linear_y = true
+script = ExtResource("3_b5u8p")
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 0.628723, 0.777629, 0, -0.777629, 0.628723, 0, 6.14463, 2.8404)
+
+[node name="Label3D" type="Label3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.994345, -0.106195, 0, 0.106195, 0.994345, 0.850926, 0.704159, -1.39838)
+text = "Score"
+
+[node name="Label3D2" type="Label3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.994345, -0.106195, 0, 0.106195, 0.994345, 1.40364, 0.704159, -1.39838)
+script = ExtResource("4_0wr8u")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Head"]
+
+[node name="HeadCollision" type="CollisionShape3D" parent="Head"]
+shape = SubResource("SphereShape3D_17dgb")
+
+[node name="Head" type="MeshInstance3D" parent="Head"]
+material_override = ExtResource("5_itrgv")
+mesh = SubResource("SphereMesh_fe87x")
+skeleton = NodePath("")
+
+[node name="Eye" type="MeshInstance3D" parent="Head/Head"]
+transform = Transform3D(0.248434, 0, 0, 0, 0.248434, 0, 0, 0, 0.248434, -0.152448, 0.188341, -0.366467)
+material_override = ExtResource("6_yarg7")
+mesh = SubResource("SphereMesh_fe87x")
+skeleton = NodePath("")
+
+[node name="Eye2" type="MeshInstance3D" parent="Head/Head"]
+transform = Transform3D(0.248434, 0, 0, 0, 0.248434, 0, 0, 0, 0.248434, 0.149692, 0.188341, -0.366467)
+material_override = ExtResource("6_yarg7")
+mesh = SubResource("SphereMesh_fe87x")
+skeleton = NodePath("")
+
+[node name="RayCast3D" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 2
+
+[node name="Food" type="StaticBody3D" parent="." groups=["food"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.740631, -3.21167)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("7_kejh1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Food"]
+shape = SubResource("SphereShape3D_vhr24")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Food"]
+transform = Transform3D(0.622421, 0, 0, 0, 0.622421, 0, 0, 0, 0.622421, 0, 0, 0)
+material_override = ExtResource("8_584sj")
+mesh = SubResource("BoxMesh_73g0o")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Enemy" parent="." instance=ExtResource("9_y1knr")]
+
+[node name="Enemy2" parent="." instance=ExtResource("9_y1knr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.34884, 1.36419, 9.03863)
+
+[node name="Enemy3" parent="." instance=ExtResource("9_y1knr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.19843, 1.36419, -7.43599)
+
+[node name="Enemy4" parent="." instance=ExtResource("9_y1knr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.72646, 1.36419, -9.02253)
+
+[node name="Enemy5" parent="." instance=ExtResource("9_y1knr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.07779, 1.36419, 5.50853)
+
+[node name="Enemy6" parent="." instance=ExtResource("9_y1knr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8292, 1.36419, 1.91037)
+
+[node name="Enemy7" parent="." instance=ExtResource("9_y1knr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5991, 1.36419, -9.72478)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enemy7"]
+environment = SubResource("Environment_21cos")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enemy7/WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00581551, -0.0162177, 0.0185766)
+light_color = Color(0.701961, 0.917647, 0.988235, 1)

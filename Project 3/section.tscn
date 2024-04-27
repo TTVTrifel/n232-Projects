@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cywp4g3pk6yhv"]
+
+[ext_resource type="Script" path="res://sectionMove.gd" id="1_87pkg"]
+[ext_resource type="Material" uid="uid://d38ko1hcqycg3" path="res://DarkPurple.tres" id="2_v1lk5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x60vp"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_fe87x"]
+
+[node name="Section" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.657332, 0)
+script = ExtResource("1_87pkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_x60vp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_v1lk5")
+mesh = SubResource("SphereMesh_fe87x")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="PinJoint3D" type="PinJoint3D" parent="."]
+node_b = NodePath("..")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://otnfhfw1gnyx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fw81v"]
+font_size = 50
+
+[node name="End" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 69.0
+offset_top = 224.0
+offset_right = 1062.0
+offset_bottom = 365.0
+text = "Good Work!
+ You've Successfully Created a Black Hole"
+label_settings = SubResource("LabelSettings_fw81v")
+horizontal_alignment = 1

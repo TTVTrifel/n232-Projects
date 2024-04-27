@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cywp4g3pk6yhv"]
+
+[ext_resource type="Script" path="res://section.gd" id="1_4upmq"]
+[ext_resource type="Material" uid="uid://duimefho0br2k" path="res://M_Snake.tres" id="1_p842d"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x60vp"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_fe87x"]
+
+[node name="Section" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.657332, 0)
+script = ExtResource("1_4upmq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_x60vp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_p842d")
+mesh = SubResource("SphereMesh_fe87x")
+skeleton = NodePath("../CollisionShape3D")

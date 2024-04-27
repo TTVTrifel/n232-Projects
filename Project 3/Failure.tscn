@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://do3vn6iy7xo4q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_me7q1"]
+font_size = 60
+
+[node name="Failure" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 129.0
+offset_top = 235.0
+offset_right = 1008.0
+offset_bottom = 481.0
+text = "Nice try, Good Luck Next Time"
+label_settings = SubResource("LabelSettings_me7q1")
+horizontal_alignment = 1
