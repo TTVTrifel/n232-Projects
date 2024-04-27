@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://ya6amr38syr8"]
+
+[ext_resource type="Script" path="res://scenes/Button.gd" id="1_8gcyx"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 409.0
+offset_top = 251.0
+offset_right = 526.0
+offset_bottom = 282.0
+text = "Back To Menu"
+script = ExtResource("1_8gcyx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 430.0
+offset_top = 117.0
+offset_right = 505.0
+offset_bottom = 140.0
+text = "Good Job!"
+
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]

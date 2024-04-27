@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://j6ces252of1p"]
+
+[ext_resource type="Texture2D" uid="uid://cqn7rqhpq7h5a" path="res://Art/potato.png" id="1_twd7v"]
+
+[sub_resource type="Curve" id="Curve_1hyp0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3dm3i"]
+curve = SubResource("Curve_1hyp0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bwfbm"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_3dm3i")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+scale = Vector2(0.36, 0.36)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_bwfbm")
+texture = ExtResource("1_twd7v")
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://dewyn5as4inkm"]
+
+[ext_resource type="Script" path="res://scripts/StartGame.gd" id="1_5s5pc"]
+[ext_resource type="Texture2D" uid="uid://btcu7r4yy25oi" path="res://scenes/moon-gettyimages-490413228.jpg" id="1_org66"]
+
+[node name="menu" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(559, 428)
+scale = Vector2(0.480477, 0.480477)
+texture = ExtResource("1_org66")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1162.0
+offset_bottom = 639.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 190.0
+offset_right = 581.0
+offset_bottom = 232.0
+scale = Vector2(2, 2)
+text = "To The Moon!"
+horizontal_alignment = 1
+
+[node name="btnPlay" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 313.0
+offset_right = 688.0
+offset_bottom = 371.0
+text = "Begin"
+script = ExtResource("1_5s5pc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 494.0
+offset_top = 261.0
+offset_right = 681.0
+offset_bottom = 284.0
+
+[connection signal="pressed" from="Control/btnPlay" to="Control/btnPlay" method="_on_pressed"]
